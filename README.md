@@ -3,7 +3,7 @@
 # PHBS QPS 2024 - US CPI Inflation Analysis
 
 ## Repository URL
-[GitHub Repository URL](https://github.com/YOUR-USERNAME/phbs-qps-2024)
+[GitHub Repository URL](https://github.com/williamLong-lgtm/phbs-qps-2024/blob/main)
 
 ## Setup and Running Instructions
 
