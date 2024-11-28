@@ -4,7 +4,6 @@ Created on Thu Nov 28 10:57:52 2024
 
 @author: Sherq
 """
-
 import pandas as pd
 import pandas_datareader.data as web
 from datetime import datetime
@@ -30,25 +29,26 @@ def calculate_inflation(cpi_data):
     return inflation_last_4_quarters
 
 def save_data(cpi_data, inflation_data):
-    # Make sure the data folder exists
-    os.makedirs('data', exist_ok=True)
+    # Set the path to the 'data' directory (relative to 'scripts' folder)
+    data_folder = os.path.join(os.path.dirname(__file__), '..', 'data')  # '..' moves one level up from 'scripts'
+
+    # Ensure the data folder exists
+    os.makedirs(data_folder, exist_ok=True)
     
-    # Save CPI data to CSV
-    cpi_data.to_csv('data/cpi_data.csv')
-    print("CPI data saved to data/cpi_data.csv")
+    # Save CPI data to a CSV file
+    cpi_data.to_csv(os.path.join(data_folder, 'us_cpi_data.csv'))
     
-    # Save Inflation data to CSV
-    inflation_data.to_csv('data/inflation_data.csv')
-    print("Inflation data saved to data/inflation_data.csv")
+    # Save inflation data to a CSV file
+    inflation_data.to_csv(os.path.join(data_folder, 'us_inflation_data.csv'))
 
 if __name__ == "__main__":
     cpi_data = fetch_cpi_data()
     inflation_last_4_quarters = calculate_inflation(cpi_data)
     
-    # Print the inflation for the last 4 quarters
+    # Print the last 4 quarters of inflation
     print("Last 4 Quarters of Inflation in the US:")
     print(inflation_last_4_quarters[['Inflation']])
     
-    # Save the data to CSV files in the data folder
+    # Save the data to the 'data' folder
     save_data(cpi_data, inflation_last_4_quarters)
 
